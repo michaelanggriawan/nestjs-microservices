@@ -1,0 +1,14 @@
+### Create order transaction
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+  "name": "t-shirt",
+  "price": 10.000,
+  "phoneNumber": "+628129876543"
+}
+
+
+### Get orders transaction
+GET http://localhost:3000/orders
+Content-Type: application/json
