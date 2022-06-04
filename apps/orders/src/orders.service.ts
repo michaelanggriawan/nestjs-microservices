@@ -12,7 +12,7 @@ export class OrdersService {
     @Inject(BILLING_SERVICE) private billinngClient: ClientProxy,
   ) {}
 
-  async createrOrder(request: CreateOrderRequest, authentication: string) {
+  async createOrder(request: CreateOrderRequest, authentication: string) {
     const session = await this.ordersRepository.startTransaction();
     try {
       const order = this.ordersRepository.create(request, { session });

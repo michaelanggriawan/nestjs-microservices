@@ -19,6 +19,7 @@ export class AuthController {
   ) {
     await this.authService.login(user, response);
     response.send(user);
+    return user;
   }
 
   @UseGuards(JwtAuthGuard)
