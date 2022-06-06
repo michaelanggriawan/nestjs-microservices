@@ -24,7 +24,7 @@ jobs:
           node-version: '14'
 
       - name: Cache dependencies
-        uses: action/cache@v2
+        uses: actions/cache@v2
         with:
           path: ~/.npm
           key: npm-${{ hashFiles('package-lock.json') }}
