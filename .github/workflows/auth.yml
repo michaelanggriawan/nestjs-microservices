@@ -2,19 +2,19 @@ name: CI-auth
 
 on:
   push:
-    branches: 
+    branches:
       - master
-    paths: 
-      - 'apps/auth/**'
+    # paths:
+      # - 'apps/auth/**'
 
   pull_request:
     branches:
       - master
-    paths: 
-      - 'apps/auth/**'
+    # paths:
+      # - 'apps/auth/**'
 
 jobs:
-  lint: 
+  lint:
     name: Linting
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +37,13 @@ jobs:
 
       - name: run lint
         run: npm run lint
-      
 
+  test:
+    name: run test
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - uses: actions/checkout@v2
 
-
+      - name: run unit testing
+        run: npm run test
