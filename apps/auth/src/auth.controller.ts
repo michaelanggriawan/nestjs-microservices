@@ -25,6 +25,7 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @MessagePattern('validate_user')
   async validateUser(@CurrentUser() user: User) {
+    console.log('show error');
     return user;
   }
 }
