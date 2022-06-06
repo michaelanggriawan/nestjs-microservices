@@ -1,17 +1,17 @@
-name: CI-auth
+name: CI-billing
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'apps/auth/**'
+      - 'apps/billing/**'
 
   pull_request:
     branches:
       - master
     paths:
-      - 'apps/auth/**'
+      - 'apps/billing/**'
 
 jobs:
   lint:

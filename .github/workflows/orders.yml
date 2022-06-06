@@ -1,17 +1,17 @@
-name: CI-auth
+name: CI-orders
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'apps/auth/**'
+      - 'apps/orders/**'
 
   pull_request:
     branches:
       - master
     paths:
-      - 'apps/auth/**'
+      - 'apps/orders/**'
 
 jobs:
   lint:
