@@ -39,4 +39,13 @@ jobs:
 
       - name: run unit test
         run: npm run test:cov
+
+
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage
+          path: coverage
+      
+      - uses: actions/download-artifact 
   
