@@ -61,7 +61,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload coverage reports
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx codecov  
         env: 
           CODECOV_TOKEN: ${{ secrets.CODECOVE_TOKEN }}
