@@ -42,10 +42,10 @@ jobs:
 
 
       - name: Upload test coverage
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: code-coverage
           path: coverage
       
-      - uses: actions/download-artifact 
+  
   
