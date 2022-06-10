@@ -60,7 +60,5 @@ jobs:
         with: 
           token: ${{ secrets.CODECOVE_TOKEN }}
           files: ./coverage/clover.xml
-          type: project
-          target: 90%
           name: codecov-umbrella
   
