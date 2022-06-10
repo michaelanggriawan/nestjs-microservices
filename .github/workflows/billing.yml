@@ -59,5 +59,4 @@ jobs:
         with: 
           token: ${{ secrets.CODECOVE_TOKEN }}
           files: ./coverage/clover.xml
-          flags: unittest
           name: codecov-umbrella
