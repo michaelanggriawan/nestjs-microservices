@@ -54,12 +54,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create a release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' 
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Upload coverage reports
         uses: codecov/codecov-action@v2
         with: 
