@@ -15,6 +15,9 @@ jobs:
   test:
     name: Run lint and unit test  
     runs-on: ubuntu-latest
+    env:           
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
       - uses: actions/checkout@v2
 
@@ -51,12 +54,10 @@ jobs:
       - name: Create a release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master' 
         run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v2
-        with: 
-          token: ${{ secrets.CODECOVE_TOKEN }}
-          files: ./coverage/clover.xml
-          name: codecov-umbrella
+      - name: Sonar cloud scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+
+
