@@ -59,7 +59,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: '24aa7e53388e49c23656d7aeb85103d6988fca07'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
