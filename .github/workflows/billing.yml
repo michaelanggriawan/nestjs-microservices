@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
@@ -55,8 +55,6 @@ jobs:
       - name: Create a release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master' 
         run: npx semantic-release
-        env:           
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Sonar cloud scan
         uses: SonarSource/sonarcloud-github-action@master
