@@ -54,9 +54,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v2
-        with: 
-          token: ${{ secrets.CODECOVE_TOKEN }}
-          files: ./coverage/clover.xml
-          name: codecov-umbrella
