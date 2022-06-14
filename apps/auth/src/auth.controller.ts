@@ -6,7 +6,7 @@ import { CurrentUser } from './current-user.decorator';
 import JwtAuthGuard from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { User } from './users/schemas/user.schema';
-
+// auth
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
