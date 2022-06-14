@@ -57,6 +57,8 @@ jobs:
 
       - name: Sonar cloud scan
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: apps/billing/src
         env:
           SONAR_TOKEN: '165f5e39fa0b5795325087273172e1858d3a1544'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
