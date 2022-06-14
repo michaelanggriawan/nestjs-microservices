@@ -16,6 +16,10 @@ lerna-debug.log*
 
 # Tests
 /coverage
+/apps/orders/src/coverage
+/apps/billing/src/coverage
+/apps/auth/src/coverage
+/libs/common/node_modules
 /.nyc_output
 
 # IDEs and editors
