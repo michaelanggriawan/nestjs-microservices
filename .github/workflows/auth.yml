@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage
-          path: apps/auth/src/coverage
+          path: apps/auth/coverage
 
       - uses: actions/download-artifact@v2
 

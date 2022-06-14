@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage
-          path: apps/billing/src/coverage
+          path: apps/billing/coverage
 
       - uses: actions/download-artifact@v2
 
