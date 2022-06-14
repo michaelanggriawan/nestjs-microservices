@@ -57,7 +57,8 @@ jobs:
 
       - name: Sonar cloud scan
         uses: SonarSource/sonarcloud-github-action@master
-        run: pwd
+        run: | 
+          pwd
         with:
           projectBaseDir: apps/auth
         env:
