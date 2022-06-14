@@ -1,13 +1,14 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { RmqService } from './rmq.service';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 interface RmqModuleOptions {
   name: string;
 }
 
 @Module({
+  imports: [ConfigModule.forRoot({ isGlobal: true })],
   providers: [RmqService],
   exports: [RmqService],
 })

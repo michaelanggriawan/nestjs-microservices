@@ -36,17 +36,16 @@ jobs:
         run: npm ci 
 
       - name: run lint
-        run: npm run lint
+        run: npm run lint --prefix apps/orders 
 
       - name: run unit test
-        run: npm run test:cov
-
+        run: npm run test:cov --prefix apps/orders 
 
       - name: Upload test coverage
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage
-          path: coverage
+          path: apps/orders/src/coverage
       
       - uses: actions/download-artifact@v2
 
@@ -55,7 +54,7 @@ jobs:
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Sonar cloud scan
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: SonarSource/sonarcloud-github-action@master

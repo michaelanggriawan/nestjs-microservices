@@ -13,7 +13,7 @@ on:
 
 jobs:
   test:
-    name: Run lint and unit test 
+    name: Run lint and unit test  
     runs-on: ubuntu-latest
 
     steps:
@@ -33,20 +33,20 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci 
 
       - name: run lint
-        run: npm run lint
+        run: npm run lint --prefix apps/auth
 
       - name: run unit test
-        run: npm run test:cov
+        run: npm run test:cov --prefix apps/auth
 
       - name: Upload test coverage
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage
-          path: coverage
-
+          path: apps/auth/src/coverage
+      
       - uses: actions/download-artifact@v2
 
       - name: Create a release
@@ -61,6 +61,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 
       

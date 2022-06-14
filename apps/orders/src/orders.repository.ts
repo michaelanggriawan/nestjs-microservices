@@ -3,7 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Order } from './schemas/order.schema';
 import { Model, Connection } from 'mongoose';
-
+// trigger sonar monorepo
 @Injectable()
 export class OrdersRepository extends AbstractRepository<Order> {
   protected readonly logger = new Logger(OrdersRepository.name);
