@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BillingController } from '../billing.controller';
 import { BillingService } from '../billing.service';
 import { RmqModule, AuthModule } from '@app/common';
+import { LoggerModule } from 'nestjs-pino';
 import * as Joi from 'joi';
 
 describe('BillingController', () => {
@@ -11,6 +12,7 @@ describe('BillingController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       imports: [
+        LoggerModule.forRoot(),
         ConfigModule.forRoot({
           isGlobal: true,
           validationSchema: Joi.object({

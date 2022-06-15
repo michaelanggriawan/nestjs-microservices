@@ -11,6 +11,7 @@ import { usersStub } from '../users/test/stubs/users.stub';
 import { createMock } from '@golevelup/ts-jest';
 import { Response } from 'express';
 import { connections } from 'mongoose';
+import { LoggerModule } from 'nestjs-pino';
 
 jest.mock('../auth.service');
 
@@ -28,6 +29,7 @@ describe('AuthController', () => {
   beforeAll(async () => {
     const app: TestingModule = await Test.createTestingModule({
       imports: [
+        LoggerModule.forRoot(),
         DatabaseModule,
         UsersModule,
         RmqModule,
