@@ -3,10 +3,12 @@ import { BillingController } from './billing.controller';
 import { BillingService } from './billing.service';
 import { RmqModule, AuthModule } from '@app/common';
 import { ConfigModule } from '@nestjs/config';
+import { LoggerModule } from 'nestjs-pino';
 import * as Joi from 'joi';
 
 @Module({
   imports: [
+    LoggerModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({

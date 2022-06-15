@@ -61,7 +61,7 @@ describe('AuthController', () => {
   describe('login', () => {
     describe('When login is called', () => {
       beforeEach(async () => {
-        await authController.login(usersStub(), response);
+        await authController.login(usersStub(), usersStub(), response);
       });
 
       test('Then it should call authService', () => {

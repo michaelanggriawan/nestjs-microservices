@@ -8,12 +8,14 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { UsersModule } from './users/users.module';
+import { LoggerModule } from 'nestjs-pino';
 
 @Module({
   imports: [
     DatabaseModule,
     UsersModule,
     RmqModule,
+    LoggerModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
