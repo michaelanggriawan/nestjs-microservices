@@ -107,6 +107,7 @@ volumes:
   mongodb_master_data:
     driver: local
 
+# networks for connecting to datadog agent from different container
 networks:
   default:
     name: datadog
