@@ -4,6 +4,7 @@ import { CreateOrderRequest } from './dto/create-order.request';
 import { BILLING_SERVICE } from './constant/services';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
+import { Span } from 'nestjs-ddtrace';
 
 @Injectable()
 export class OrdersService {
@@ -12,6 +13,7 @@ export class OrdersService {
     @Inject(BILLING_SERVICE) private billinngClient: ClientProxy,
   ) {}
 
+  @Span()
   async createOrder(request: CreateOrderRequest, authentication: string) {
     const session = await this.ordersRepository.startTransaction();
     try {
@@ -30,6 +32,7 @@ export class OrdersService {
     }
   }
 
+  @Span()
   async getOrders() {
     return this.ordersRepository.find({});
   }

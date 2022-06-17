@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 import { User } from './users/schemas/user.schema';
+import { Span } from 'nestjs-ddtrace';
 
 export interface TokenPayload {
   userId: string;
@@ -15,6 +16,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  @Span()
   async login(user: User, response: Response) {
     const tokenPayload: TokenPayload = {
       userId: user._id.toHexString(),
@@ -33,6 +35,7 @@ export class AuthService {
     });
   }
 
+  @Span()
   logout(response: Response) {
     response.cookie('Authentication', '', {
       httpOnly: true,

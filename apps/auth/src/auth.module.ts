@@ -9,13 +9,17 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { UsersModule } from './users/users.module';
 import { LoggerModule } from 'nestjs-pino';
+import { DatadogTraceModule } from 'nestjs-ddtrace';
 
 @Module({
   imports: [
     DatabaseModule,
     UsersModule,
     RmqModule,
-    LoggerModule.forRoot(),
+    LoggerModule.forRoot({
+      pinoHttp: { level: process.env.prod !== 'prod' ? 'trace' : 'info' },
+    }),
+    DatadogTraceModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({

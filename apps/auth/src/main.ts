@@ -1,3 +1,4 @@
+import './tracing';
 import { NestFactory } from '@nestjs/core';
 import { RmqService } from '@app/common';
 import { AuthModule } from './auth.module';
@@ -7,12 +8,15 @@ import { ConfigService } from '@nestjs/config';
 import { description, name, version } from '../package.json';
 import { DEFAULT_TAG, SWAGGER_API_ROOT } from './constant/document';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { Logger as PinoLogger } from 'nestjs-pino';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
   const rmqService = app.get<RmqService>(RmqService);
   app.connectMicroservice<RmqOptions>(rmqService.getOptions('AUTH', true));
   app.useGlobalPipes(new ValidationPipe());
+  app.useLogger(app.get(PinoLogger));
+
   const configService = app.get(ConfigService);
   await app.startAllMicroservices();
 

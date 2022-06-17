@@ -9,6 +9,8 @@ services:
     command: npm run start:dev orders
     env_file:
       - ./apps/orders/.env
+    environment:
+      - DD_AGENT_HOST=datadog-agent
     depends_on:
       - mongodb-primary
       - mongodb-secondary
@@ -30,6 +32,8 @@ services:
     command: npm run start:dev billing
     env_file:
       - ./apps/billing/.env
+    environment:
+      - DD_AGENT_HOST=datadog-agent
     depends_on:
       - mongodb-primary
       - mongodb-secondary
@@ -40,7 +44,7 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
-  auth: 
+  auth:
     build:
       context: .
       dockerfile: ./apps/auth/Dockerfile
@@ -48,8 +52,10 @@ services:
     command: npm run start:dev auth
     ports:
       - '3001:3001'
-    env_file: 
+    env_file:
       - ./apps/auth/.env
+    environment:
+      - DD_AGENT_HOST=datadog-agent
     depends_on:
       - mongodb-primary
       - mongodb-secondary
@@ -100,3 +106,9 @@ services:
 volumes:
   mongodb_master_data:
     driver: local
+
+networks:
+  default:
+    name: datadog
+    external: true
+      

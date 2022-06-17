@@ -4,11 +4,15 @@ import { BillingService } from './billing.service';
 import { RmqModule, AuthModule } from '@app/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
+import { DatadogTraceModule } from 'nestjs-ddtrace';
 import * as Joi from 'joi';
 
 @Module({
   imports: [
-    LoggerModule.forRoot(),
+    LoggerModule.forRoot({
+      pinoHttp: { level: process.env.prod !== 'prod' ? 'trace' : 'info' },
+    }),
+    DatadogTraceModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({

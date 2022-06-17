@@ -9,10 +9,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Order, OrderSchema } from './schemas/order.schema';
 import { BILLING_SERVICE } from './constant/services';
 import { LoggerModule } from 'nestjs-pino';
+import { DatadogTraceModule } from 'nestjs-ddtrace';
 
 @Module({
   imports: [
-    LoggerModule.forRoot(),
+    LoggerModule.forRoot({
+      pinoHttp: { level: process.env.prod !== 'prod' ? 'trace' : 'info' },
+    }),
+    DatadogTraceModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
