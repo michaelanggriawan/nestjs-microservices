@@ -9,49 +9,49 @@ Check
 
 
 ##### Monorepo with nestjs
-- Docker
+  - Docker
 
-- Logs Service
- - Pinojs
+  - Logs Service
+    - Pinojs
 
-- Observability APM Monitoring and logs management
- - datadog
+  - Observability APM Monitoring and logs management
+    - datadog
 
-- Authentication
+  - Authentication
 
-- Swagger Documentation
+  - Swagger Documentation
 
-- Monggodb
- - mongoose
- - multiples databases
+  - Monggodb
+    - mongoose
+    - multiples databases
 
-- Messages broker
- - Kafka
- - RabbitMQ
- - Google PubSub
+  - Messages broker
+    - Kafka
+    - RabbitMQ
+    - Google PubSub
 
-- libs structure
+  - libs structure
 
-- Tests
-  - Unit tests
-  - e2e 
-  - 90% Coverage
+  - Tests
+    - Unit tests
+    - e2e 
+    - 90% Coverage
 
-- CI/CD
-  - Github Actions
+  - CI/CD
+    - Github Actions
 
-- Code Quality checker
-  - Sonar cloud  
+  - Code Quality checker
+    - Sonar cloud  
 
-- Commitlint
-  - Husky
-  - Conventional commit pattern
+  - Commitlint
+    - Husky
+    - Conventional commit pattern
 
-- linter
-  - eslint
+  - linter
+    - eslint
 
-- Versioning
- - Semantic release
+  - Versioning
+    - Semantic release
 
 
 #### Prerequisite
