@@ -68,6 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Enforce Pull Request Description Length
+        if: github.event_name == 'pull_request'
         uses: ryanvade/enforce-pr-description-length-action@v1
         with:
           minLength: 5
