@@ -64,13 +64,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-  validation:
-    name: validate pr description
-    runs-on: ubuntu-latest
-    steps:
-      - name: Enforce Pull Request Description Length
-        if: github.event_name == 'pull_request'
-        uses: ryanvade/enforce-pr-description-length-action@v1
-        with:
-          minLength: 5
 
