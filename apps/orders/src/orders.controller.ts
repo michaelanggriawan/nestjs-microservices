@@ -16,15 +16,6 @@ export class OrdersController {
     );
   }
 
-  @Post()
-  @UseGuards(JwtAuthGuard)
-  async createProduct(@Body() request: CreateOrderRequest, @Req() req?: any) {
-    return this.ordersService.createOrder(
-      request,
-      req?.cookies?.Authentication,
-    );
-  }
-
   @Get()
   @UseGuards(JwtAuthGuard)
   async getOrders() {
