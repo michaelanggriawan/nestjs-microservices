@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Enforce Pull Request Description Length
         uses: ryanvade/enforce-pr-description-length-action@v1
-        # if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.ref == 'refs/heads/master'
         with:
           minLength: 5
