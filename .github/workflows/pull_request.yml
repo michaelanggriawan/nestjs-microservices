@@ -2,7 +2,7 @@ name: pull_request validation
 
 on:
   pull_request:
-    branches: [develop]
+    branches: [develop, master]
 
 jobs:
   validation:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Enforce Pull Request Description Length
-        if: github.event_name == 'pull_request'
         uses: ryanvade/enforce-pr-description-length-action@v1
+        if: github.event_name == 'pull_request'
         with:
           minLength: 5
