@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: log events
-        run:  echo "${{ github.context.payload.pull_request }}"
+        run:  echo "${{ github.event }}"
 
       - name: Enforce Pull Request Description Length
         uses: ryanvade/enforce-pr-description-length-action@v1
