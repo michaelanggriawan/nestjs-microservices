@@ -63,5 +63,10 @@ jobs:
           SONAR_TOKEN: '165f5e39fa0b5795325087273172e1858d3a1544'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Enforce Pull Request Description Length
+        uses: ryanvade/enforce-pr-description-length-action@v1
+        with:
+          minLength: 5
+
 
 
