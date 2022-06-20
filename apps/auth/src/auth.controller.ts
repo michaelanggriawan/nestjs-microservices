@@ -7,7 +7,7 @@ import JwtAuthGuard from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { User } from './users/schemas/user.schema';
 import { CreateUserRequest } from './users/dto/create-user.request';
-
+// controller
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
