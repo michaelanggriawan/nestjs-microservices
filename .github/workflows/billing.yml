@@ -2,12 +2,12 @@ name: CI-billing
 
 on:
   push:
-    branches: [develop, master]
+    branches: [master]
     paths:
       - 'apps/billing/**'
 
   pull_request:
-    branches: [develop, master]
+    branches: [master]
     paths:
       - 'apps/billing/**'
 

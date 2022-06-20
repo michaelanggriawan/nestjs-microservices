@@ -2,12 +2,12 @@ name: CI-auth
 
 on:
   push:
-    branches: [develop, master]
+    branches: [master]
     paths:
       - 'apps/auth/**'
 
   pull_request:
-    branches: [develop, master]
+    branches: [master]
     paths:
       - 'apps/auth/**'
 
