@@ -1,13 +1,15 @@
 name: CI-orders
 
 on:
-  push:
-    branches: [master]
+  pull_request:
+    branches: 
+     - master
     paths:
       - 'apps/orders/**'
 
-  pull_request:
-    branches: [master]
+  push:
+    branches: 
+      - master
     paths:
       - 'apps/orders/**'
 
