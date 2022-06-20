@@ -13,4 +13,3 @@ jobs:
         uses: ryanvade/enforce-pr-description-length-action@v1
         with:
           minLength: 5
-        if: github.event_name == 'pull_request'
