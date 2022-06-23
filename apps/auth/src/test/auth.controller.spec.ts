@@ -3,7 +3,6 @@ import { AuthController } from '../auth.controller';
 import { AuthService } from '../auth.service';
 import { DatabaseModule } from '../../../../libs/common/src/database/database.module';
 import { UsersModule } from '../users/users.module';
-import { RmqModule } from '../../../../libs/common/src/rmq/rmq.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 import { JwtModule } from '@nestjs/jwt';
@@ -32,7 +31,6 @@ describe('AuthController', () => {
         LoggerModule.forRoot(),
         DatabaseModule,
         UsersModule,
-        RmqModule,
         ConfigModule.forRoot({
           isGlobal: true,
           validationSchema: Joi.object({

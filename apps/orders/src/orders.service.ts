@@ -1,16 +1,14 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { OrdersRepository } from './orders.repository';
 import { CreateOrderRequest } from './dto/create-order.request';
-import { BILLING_SERVICE } from './constant/services';
-import { ClientProxy } from '@nestjs/microservices';
-import { lastValueFrom } from 'rxjs';
 import { Span } from 'nestjs-ddtrace';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class OrdersService {
   constructor(
     private readonly ordersRepository: OrdersRepository,
-    @Inject(BILLING_SERVICE) private billinngClient: ClientProxy,
+    @Inject('PUBSUB_CLIENT') private readonly client: ClientProxy,
   ) {}
 
   @Span()
@@ -18,13 +16,12 @@ export class OrdersService {
     const session = await this.ordersRepository.startTransaction();
     try {
       const order = this.ordersRepository.create(request, { session });
-      await lastValueFrom(
-        this.billinngClient.emit('order_created', {
-          request,
-          Authentication: authentication,
-        }),
-      );
-      await session.commitTransaction();
+
+      this.client.emit('orders-topic', {
+        request,
+        Authentication: authentication,
+      }),
+        await session.commitTransaction();
       return order;
     } catch (err) {
       await session.abortTransaction();

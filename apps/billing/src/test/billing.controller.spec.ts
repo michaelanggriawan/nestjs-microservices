@@ -2,9 +2,8 @@ import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { BillingController } from '../billing.controller';
 import { BillingService } from '../billing.service';
-import { RmqModule, AuthModule } from '@app/common';
+import { AuthModule } from '@app/common';
 import { LoggerModule } from 'nestjs-pino';
-import * as Joi from 'joi';
 
 describe('BillingController', () => {
   let billingController: BillingController;
@@ -15,13 +14,7 @@ describe('BillingController', () => {
         LoggerModule.forRoot(),
         ConfigModule.forRoot({
           isGlobal: true,
-          validationSchema: Joi.object({
-            RABBIT_MQ_URI: Joi.string().required(),
-            RABBIT_MQ_BILLING_QUEUE: Joi.string().required(),
-          }),
-          envFilePath: './apps/billing/.env',
         }),
-        RmqModule,
         AuthModule,
       ],
       controllers: [BillingController],
@@ -34,6 +27,21 @@ describe('BillingController', () => {
   describe('root', () => {
     it('should return "Hello World!"', () => {
       expect(billingController.getHello()).toBe('Hello World!');
+    });
+  });
+
+  describe('root', () => {
+    it('should return undefined', () => {
+      const mockData = {
+        payload: {
+          request: {
+            name: 't-shirt',
+            price: 1000,
+            phoneNumber: '+628129876543',
+          },
+        },
+      };
+      expect(billingController.handleOrderCreated(mockData)).toBe(undefined);
     });
   });
 });

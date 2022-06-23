@@ -1,11 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OrdersController } from '../orders.controller';
 import { OrdersService } from '../orders.service';
-import { AuthModule, DatabaseModule, RmqModule } from '@app/common';
+import { AuthModule, DatabaseModule } from '@app/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { MongooseModule } from '@nestjs/mongoose';
-import { BILLING_SERVICE } from '../constant/services';
 import { OrderSchema, Order } from '../schemas/order.schema';
 import { ordersStub } from './stubs/orders.stub';
 import { connections } from 'mongoose';
@@ -29,9 +28,6 @@ describe('OrdersController', () => {
         }),
         DatabaseModule,
         MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
-        RmqModule.register({
-          name: BILLING_SERVICE,
-        }),
         AuthModule,
       ],
       controllers: [OrdersController],
