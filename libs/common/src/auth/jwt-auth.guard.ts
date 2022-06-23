@@ -6,19 +6,18 @@ import {
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { catchError, Observable, tap } from 'rxjs';
-import { AUTH_SERVICE } from './services';
 import { UnauthorizedException } from '@nestjs/common';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
-  constructor(@Inject(AUTH_SERVICE) private authClient: ClientProxy) {}
+  constructor(@Inject('PUBSUB_CLIENT') private client: ClientProxy) {}
 
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const authentication = this.getAuthentication(context);
-    return this.authClient
-      .send('validate_user', {
+    return this.client
+      .send('authentication-topic', {
         Authentication: authentication,
       })
       .pipe(

@@ -10,6 +10,7 @@ import { Logger as PinoLogger } from 'nestjs-pino';
 
 async function bootstrap() {
   const app = await NestFactory.create(OrdersModule);
+
   app.useGlobalPipes(new ValidationPipe());
   app.useLogger(app.get(PinoLogger));
   const configService = app.get(ConfigService);
@@ -24,7 +25,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(SWAGGER_API_ROOT, app, document);
 
-  const serviceURL = 'http://localhost:3000';
+  const serviceURL = `http://localhost:${configService.get('PORT')}`;
   const openApiURL = `${serviceURL}/${SWAGGER_API_ROOT}`;
 
   await app.listen(configService.get('PORT'));

@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { BillingController } from './billing.controller';
 import { BillingService } from './billing.service';
-import { RmqModule, AuthModule } from '@app/common';
+import { AuthModule } from '@app/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { DatadogTraceModule } from 'nestjs-ddtrace';
 import * as Joi from 'joi';
+import { GCPubSubClient } from '@app/common';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
@@ -16,14 +18,23 @@ import * as Joi from 'joi';
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
-        RABBIT_MQ_URI: Joi.string().required(),
-        RABBIT_MQ_BILLING_QUEUE: Joi.string().required(),
+        GOOGLE_CREDENTIALS_KEY: Joi.string().required(),
       }),
+      load: [configuration],
+      envFilePath: './apps/billing/.env',
     }),
-    RmqModule,
     AuthModule,
   ],
   controllers: [BillingController],
-  providers: [BillingService],
+  providers: [
+    BillingService,
+    {
+      provide: 'PUBSUB_CLIENT',
+      useFactory: () => {
+        return new GCPubSubClient({});
+      },
+      inject: [],
+    },
+  ],
 })
 export class BillingModule {}

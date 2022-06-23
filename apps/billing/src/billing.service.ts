@@ -15,6 +15,6 @@ export class BillingService {
 
   @Span()
   bill(data: any) {
-    this.logger.info(data);
+    this.logger.info(data.payload.request);
   }
 }
