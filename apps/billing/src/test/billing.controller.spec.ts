@@ -29,4 +29,19 @@ describe('BillingController', () => {
       expect(billingController.getHello()).toBe('Hello World!');
     });
   });
+
+  describe('root', () => {
+    it('should return undefined', () => {
+      const mockData = {
+        payload: {
+          request: {
+            name: 't-shirt',
+            price: 1000,
+            phoneNumber: '+628129876543',
+          },
+        },
+      };
+      expect(billingController.handleOrderCreated(mockData)).toBe(undefined);
+    });
+  });
 });

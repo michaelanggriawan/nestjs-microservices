@@ -14,7 +14,7 @@ export class BillingController {
 
   @EventPattern('orders-topic')
   // @UseGuards(JwtAuthGuard)
-  async handleOrderCreated(@Payload() data: any) {
+  handleOrderCreated(@Payload() data: any) {
     this.billingService.bill(data);
   }
 }
