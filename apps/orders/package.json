@@ -1,7 +1,7 @@
 {
   "name": "orders",
   "version": "0.0.1",
-  "description": "monorepo auth",
+  "description": "monorepo orders",
   "scripts": {
     "test": "../../node_modules/jest/bin/jest.js --maxWorkers=50%",
     "test:cov": "../../node_modules/jest/bin/jest.js --maxWorkers=50% --coverage",
