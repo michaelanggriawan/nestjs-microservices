@@ -37,7 +37,7 @@ async function bootstrap() {
   const serviceURL = `http://localhost:${configService.get('PORT')}`;
   const openApiURL = `${serviceURL}/${SWAGGER_API_ROOT}`;
 
-  await app.listen(8080);
+  await app.listen(configService.get('PORT'));
 
   Logger.log(`🔵 swagger listening at ${openApiURL}`);
   Logger.log(`🔵 service listening at ${serviceURL}`);
