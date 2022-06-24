@@ -3,6 +3,8 @@ name: Build and Deploy to Cloud Run
 on:
   push:
     branches: [master]
+    paths:
+      - 'apps/orders/**'
 
 env:
   PROJECT_ID: pubsubdemo-100-353913
