@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { LoggerModule } from 'nestjs-pino';
 import { DatadogTraceModule } from 'nestjs-ddtrace';
 import configuration from './config/configuration';
+import { GCPubSubClient } from '@app/common';
 
 @Module({
   imports: [
@@ -42,6 +43,20 @@ import configuration from './config/configuration';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    {
+      provide: 'PUBSUB_CLIENT',
+      useFactory: (configService: ConfigService) => {
+        return new GCPubSubClient({
+          projectId: 'pubsubdemo-100-353913',
+          keyFile: configService.get<string>('GOOGLE_CREDENTIALS_KEY'),
+        });
+      },
+      inject: [ConfigService],
+    },
+  ],
 })
 export class AuthModule {}

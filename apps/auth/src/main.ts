@@ -7,13 +7,22 @@ import { description, name, version } from '../package.json';
 import { DEFAULT_TAG, SWAGGER_API_ROOT } from './constant/document';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Logger as PinoLogger } from 'nestjs-pino';
+import { MicroserviceOptions } from '@nestjs/microservices';
+import { GCPubSubServer } from '@algoan/nestjs-google-pubsub-microservice';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
+  const configService = app.get<ConfigService>(ConfigService);
+  app.connectMicroservice<MicroserviceOptions>({
+    strategy: new GCPubSubServer({
+      projectId: 'pubsubdemo-100-353913',
+      subscriptionsPrefix: 'authentication-topic-sub',
+      keyFile: configService.get<string>('GOOGLE_CREDENTIALS_KEY'),
+    }),
+  });
   app.useGlobalPipes(new ValidationPipe());
   app.useLogger(app.get(PinoLogger));
 
-  const configService = app.get(ConfigService);
   await app.startAllMicroservices();
 
   const config = new DocumentBuilder()
