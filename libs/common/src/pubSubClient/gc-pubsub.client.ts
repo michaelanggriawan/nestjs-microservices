@@ -11,7 +11,6 @@ import {
   WritePacket,
   IncomingResponse,
 } from '@nestjs/microservices';
-import { PubSub } from '@google-cloud/pubsub';
 // import { ERROR_EVENT, MESSAGE_EVENT } from '@nestjs/microservices/constants';
 
 export type GCPubSubClientOptions = GooglePubSubOptions & {
@@ -20,7 +19,6 @@ export type GCPubSubClientOptions = GooglePubSubOptions & {
 
 export class GCPubSubClient extends ClientProxy {
   protected logger: Logger = new Logger(GCPubSubClient.name);
-  protected client: PubSub | null = null;
   protected pubSub?: GCPubSub;
 
   private readonly options?: GCPubSubClientOptions;
