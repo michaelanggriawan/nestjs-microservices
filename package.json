@@ -80,7 +80,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^8.0.1",
     "jest": "28.0.3",
-    "lerna": "^5.1.6",
     "prettier": "^2.3.2",
     "semantic-release": "^19.0.3",
     "source-map-support": "^0.5.20",
