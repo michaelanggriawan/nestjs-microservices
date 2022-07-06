@@ -10,7 +10,7 @@ export class BillingService {
 
   @Span()
   getHello(): string {
-    return 'Hello Michael!';
+    return 'Hello World!';
   }
 
   @Span()

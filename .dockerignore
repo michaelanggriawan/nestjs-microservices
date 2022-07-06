@@ -3,6 +3,10 @@
 .gitignore
 .dockerignore
 
+/apps/orders/node_modules
+/apps/billing/node_modules
+/apps/auth/node_modules
+
 # Build depedencies
 dist.do
 node_modules
